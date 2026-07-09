@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>洲美扶輪社 NO.633次例會暨第十四屆就職典禮 - 外賓報名系統</title>
+    <title>洲美扶輪社 NO.634次例會 - 七月專題演講外賓報名系統</title>
     <style>
         :root {
             --primary-color: #0b3c5d; /* 皇家扶輪藍 */
@@ -164,7 +164,6 @@
             transform: translateY(-1px);
             box-shadow: 0 6px 20px rgba(11,60,93,0.3);
         }
-        /* 隱藏原生提交產生的 iframe（用於非同步送出資料） */
         #hidden_iframe {
             display: none;
         }
@@ -174,23 +173,31 @@
 
 <div class="container">
     
+    <!-- 頂部海報與活動資訊卡片 -->
     <div class="poster-card">
-        <img src="0707.jpg" alt="活動海報" class="poster-img">
+        <!-- 💡 固定吃 poster.jpg，以後換圖片只要把新圖改名為 poster.jpg 上傳覆蓋即可 -->
+        <img src="poster.jpg" alt="活動海報" class="poster-img">
         
         <div class="info-content">
-            <h1>洲美扶輪社 NO.633次例會<br>暨第十四屆就職典禮</h1>
+            <h1>洲美扶輪社 NO.634次例會<br>✨ 七月專題演講 ✨</h1>
             <div class="divider"></div>
             <div class="event-details">
-                <p><strong>💡 主題：</strong>在洲美，有你有我，有意思</p>
-                <p><strong>📅 時間：</strong>2026年07月07日 (二) 18:30 用餐聯誼 | 19:00 正式開始</p>
+                <p><strong>💡 主題：</strong>科技 ✕ 美學 ✕ 職涯探索</p>
+                <p style="font-size: 13px; color: #666; padding-left: 15px; margin-top: -5px;">
+                    • 徐世大 David：科技人的另一面—我的工作不是在打電動<br>
+                    • 江文嵐 Tank：美學、工程與儲水專長：Tank的職涯探索
+                </p>
+                <p><strong>📅 時間：</strong>2026年07月14日 (二) 18:30-20:30 (18:30 註冊聯誼)</p>
                 <p><strong>📍 地點：</strong>台北市商業會 (台北市南京東路二段72號6樓，捷運松江南京站1號出口)</p>
                 <p><strong>💵 費用：</strong>外賓註冊費 200 元</p>
             </div>
         </div>
     </div>
 
+    <!-- 報名表單 -->
     <form id="registrationForm" action="https://script.google.com/macros/s/AKfycbwjuwUQ-bX3O7eW4sOcgIwZBGvT7ls2wuCivgnFrTZNM4MJQKmUCo-WRosvFqJNm4Eh/exec" method="GET" target="hidden_iframe" onsubmit="showSuccessAlert()">
         
+        <!-- 核心分流 -->
         <div class="form-card">
             <div class="form-group" style="margin-bottom:0;">
                 <label style="text-align: center;">請選擇您的身分開始填寫：</label>
@@ -207,6 +214,7 @@
             </div>
         </div>
 
+        <!-- 區塊 1：扶輪社友資料 -->
         <div id="rotarianSection" class="form-card conditional-section">
             <div class="form-group">
                 <label for="rotaryName">姓名</label>
@@ -214,7 +222,7 @@
             </div>
             <div class="form-group">
                 <label for="nickname">Nickname</label>
-                <input type="text" id="nickname" name="nickname" class="form-control" placeholder="例如：Jerry">
+                <input type="text" id="nickname" name="nickname" class="form-control" placeholder="例如：David">
             </div>
             <div class="form-group">
                 <label for="rotaryClub">所屬扶輪社</label>
@@ -226,6 +234,7 @@
             </div>
         </div>
 
+        <!-- 區塊 2：一般來賓資料 -->
         <div id="guestSection" class="form-card conditional-section">
             <div class="form-group">
                 <label for="inviter">邀請人姓名</label>
@@ -241,6 +250,7 @@
             </div>
         </div>
 
+        <!-- 區塊 3：餐飲與送出 -->
         <div id="commonSection" class="form-card conditional-section">
             <div class="form-group">
                 <label>飲食習慣</label>
@@ -300,7 +310,6 @@
         }
     }
 
-    // 成功報名後的彈出提示，並自動重整表單
     function showSuccessAlert() {
         setTimeout(function() {
             alert('🎉 報名成功！期待您的蒞臨。');

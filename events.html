@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>洲美扶輪社 - 近期例會與活動多重報名系統</title>
+    <style>
+        :root {
+            --primary-color: #0b3c5d; /* 皇家扶輪藍 */
+            --accent-color: #d9b310;  /* 典雅金 */
+            --bg-color: #f1f3f5;
+            --card-bg: #ffffff;
+            --text-color: #323232;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 15px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .header-card {
+            background: linear-gradient(135deg, var(--primary-color), #051d2e);
+            color: white;
+            padding: 25px 20px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 5px solid var(--accent-color);
+        }
+        .header-card h1 {
+            margin: 0 0 10px 0;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        .header-card p {
+            margin: 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .form-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            margin-bottom: 20px;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 10px;
+        }
+        .form-group {
+            margin-bottom: 18px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: var(--primary-color);
+            font-size: 15px;
+        }
+        .form-control {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #dcdcdc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 15px;
+            background-color: #fcfcfc;
+        }
+        .form-control:focus {
+            border-color: var(--accent-color);
+            background-color: #fff;
+            outline: none;
+        }
+        .radio-box-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .radio-box-label {
+            border: 2px solid #e9e9e9;
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            font-weight: bold;
+            background: #fafafa;
+        }
+        .radio-box-label input { display: none; }
+        .radio-box-label:has(input[type="radio"]:checked) {
+            border-color: var(--primary-color);
+            background-color: #f4f8fa;
+        }
+        .conditional-section { display: none; }
+        
+        /* 活動選單卡片樣式 */
+        .event-item {
+            border: 2px solid #e8e8e8;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            background: #fff;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        .event-item:has(input[type="checkbox"]:checked) {
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 15px rgba(11,60,93,0.12);
+            background: #fbfdff;
+        }
+        .event-poster {
+            width: 100%;
+            max-height: 250px;
+            object-fit: cover;
+            display: block;
+            border-bottom: 1px solid #eee;
+        }
+        .event-body {
+            padding: 18px;
+        }
+        .event-checkbox-label {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            cursor: pointer;
+        }
+        .event-checkbox-label input[type="checkbox"] {
+            width: 22px;
+            height: 22px;
+            margin-top: 2px;
+            accent-color: var(--primary-color);
+            cursor: pointer;
+        }
+        .event-info {
+            flex: 1;
+        }
+        .event-title {
+            font-size: 17px;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 0 0 6px 0;
+        }
+        .event-desc {
+            font-size: 13.5px;
+            color: #666;
+            margin: 6px 0;
+            line-height: 1.5;
+        }
+        .event-tag {
+            display: inline-block;
+            background-color: #eef4f8;
+            color: var(--primary-color);
+            font-size: 12px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+        .btn-submit {
+            background: linear-gradient(135deg, var(--primary-color), #051d2e);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 15px;
+            font-size: 17px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(11,60,93,0.2);
+        }
+        #hidden_iframe { display: none; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <div class="header-card">
+        <h1>洲美扶輪社 - 近期例會與活動報名</h1>
+        <p>歡迎預約參與！填寫一次資料即可勾選多個活動行程。</p>
+    </div>
+
+    <form id="multiRegistrationForm" action="https://script.google.com/macros/s/AKfycbwjuwUQ-bX3O7eW4sOcgIwZBGvT7ls2wuCivgnFrTZNM4MJQKmUCo-WRosvFqJNm4Eh/exec" method="GET" target="hidden_iframe" onsubmit="showSuccessAlert(event)">
+        
+        <!-- 第一部分：身分驗證 -->
+        <div class="form-card">
+            <h2 class="section-title">第一步：個人基本資料</h2>
+            <div class="form-group">
+                <label style="text-align: center;">請選擇您的身分：</label>
+                <div class="radio-box-group">
+                    <label class="radio-box-label">
+                        <input type="radio" name="isRotarian" value="yes" onchange="toggleSections()" required>
+                        <span class="radio-text">扶輪社友</span>
+                    </label>
+                    <label class="radio-box-label">
+                        <input type="radio" name="isRotarian" value="no" onchange="toggleSections()">
+                        <span class="radio-text">一般來賓</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- 區塊 1A：社友欄位 -->
+        <div id="rotarianSection" class="form-card conditional-section">
+            <div class="form-group">
+                <label for="rotaryName">姓名</label>
+                <input type="text" id="rotaryName" name="rotaryName" class="form-control" placeholder="請填寫您的姓名">
+            </div>
+            <div class="form-group">
+                <label for="nickname">Nickname</label>
+                <input type="text" id="nickname" name="nickname" class="form-control" placeholder="例如：Jerry">
+            </div>
+            <div class="form-group">
+                <label for="rotaryClub">所屬扶輪社</label>
+                <input type="text" id="rotaryClub" name="rotaryClub" class="form-control" placeholder="例如：台北洲美社">
+            </div>
+            <div class="form-group">
+                <label for="rotaryTitle">扶輪職稱</label>
+                <input type="text" id="rotaryTitle" name="rotaryTitle" class="form-control" placeholder="例如：社友 / 社長 / PP">
+            </div>
+        </div>
+
+        <!-- 區塊 1B：來賓欄位 -->
+        <div id="guestSection" class="form-card conditional-section">
+            <div class="form-group">
+                <label for="inviter">邀請人姓名</label>
+                <input type="text" id="inviter" name="inviter" class="form-control" placeholder="請填寫邀請您的洲美社友姓名">
+            </div>
+            <div class="form-group">
+                <label for="guestName">姓名</label>
+                <input type="text" id="guestName" name="guestName" class="form-control" placeholder="請填寫您的姓名">
+            </div>
+            <div class="form-group">
+                <label for="companyAndTitle">公司及職稱</label>
+                <input type="text" id="companyAndTitle" name="companyAndTitle" class="form-control" placeholder="例如：XX有限公司 總經理">
+            </div>
+        </div>
+
+        <!-- 第二部分：選擇欲報名的活動 (可複選) -->
+        <div id="eventsSection" class="form-card conditional-section">
+            <h2 class="section-title">第二步：勾選欲參加之活動 (可複選)</h2>
+
+            <!-- 活動 1 -->
+            <div class="event-item">
+                <img src="poster_0804.jpg" alt="NO.636次例會海報" class="event-poster" onerror="this.style.display='none'">
+                <div class="event-body">
+                    <label class="event-checkbox-label">
+                        <input type="checkbox" name="events" value="0804_城市再生">
+                        <div class="event-info">
+                            <span class="event-tag">📅 2026/08/04 (二) 18:30</span>
+                            <div class="event-title">NO.636次例會｜城市再生・永續未來</div>
+                            <div class="event-desc">都更 ✕ 建築 ✕ 生態 (講師：李恬儀 Olivia、張雅婷 Bell)</div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- 活動 2 -->
+            <div class="event-item">
+                <img src="poster_0818.jpg" alt="NO.637次例會海報" class="event-poster" onerror="this.style.display='none'">
+                <div class="event-body">
+                    <label class="event-checkbox-label">
+                        <input type="checkbox" name="events" value="0818_專題演講">
+                        <div class="event-info">
+                            <span class="event-tag">📅 2026/08/18 (二) 18:30</span>
+                            <div class="event-title">NO.637次例會｜八月中旬專題講座</div>
+                            <div class="event-desc">詳細演講主題與主講人精彩預告內容。</div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- 活動 3 -->
+            <div class="event-item">
+                <img src="poster_0901.jpg" alt="NO.638次例會海報" class="event-poster" onerror="this.style.display='none'">
+                <div class="event-body">
+                    <label class="event-checkbox-label">
+                        <input type="checkbox" name="events" value="0901_九月例會">
+                        <div class="event-info">
+                            <span class="event-tag">📅 2026/09/01 (二) 18:30</span>
+                            <div class="event-title">NO.638次例會｜九月主題例會</div>
+                            <div class="event-desc">歡迎各界貴賓預約蒞臨用餐交流。</div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- 活動 4 -->
+            <div class="event-item">
+                <img src="poster_0915.jpg" alt="NO.639次例會海報" class="event-poster" onerror="this.style.display='none'">
+                <div class="event-body">
+                    <label class="event-checkbox-label">
+                        <input type="checkbox" name="events" value="0915_聯合例會">
+                        <div class="event-info">
+                            <span class="event-tag">📅 2026/09/15 (二) 18:30</span>
+                            <div class="event-title">NO.639次例會｜秋季聯合交流例會</div>
+                            <div class="event-desc">跨社交流與專題分享特別企劃。</div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- 飲食與備註 -->
+            <div class="form-group" style="margin-top: 25px; border-top: 1px dashed #ddd; padding-top: 15px;">
+                <label>飲食習慣</label>
+                <div class="radio-box-group">
+                    <label class="radio-box-label">
+                        <input type="radio" name="diet" value="葷食" checked>
+                        <span class="radio-text">葷食</span>
+                    </label>
+                    <label class="radio-box-label">
+                        <input type="radio" name="diet" value="素食">
+                        <span class="radio-text">素食</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="note">備註說明 (選填)</label>
+                <textarea id="note" name="note" class="form-control" rows="2" placeholder="如有其他特殊需求請在此註記"></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit">確認送出報名</button>
+        </div>
+
+    </form>
+</div>
+
+<iframe name="hidden_iframe" id="hidden_iframe"></iframe>
+
+<script>
+    function toggleSections() {
+        const isRotarian = document.querySelector('input[name="isRotarian"]:checked').value;
+        const rotarianSection = document.getElementById('rotarianSection');
+        const guestSection = document.getElementById('guestSection');
+        const eventsSection = document.getElementById('eventsSection');
+        
+        const rotaryInputs = rotarianSection.querySelectorAll('input');
+        const guestInputs = guestSection.querySelectorAll('input');
+
+        if (isRotarian === 'yes') {
+            rotarianSection.style.display = 'block';
+            guestSection.style.display = 'none';
+            eventsSection.style.display = 'block';
+            rotaryInputs.forEach(input => input.required = true);
+            guestInputs.forEach(input => { input.required = false; input.value = ''; });
+        } else if (isRotarian === 'no') {
+            rotarianSection.style.display = 'none';
+            guestSection.style.display = 'block';
+            eventsSection.style.display = 'block';
+            guestInputs.forEach(input => input.required = true);
+            rotaryInputs.forEach(input => { input.required = false; input.value = ''; });
+        }
+    }
+
+    function showSuccessAlert(e) {
+        // 檢查是否有至少勾選一個活動
+        const checkboxes = document.querySelectorAll('input[name="events"]:checked');
+        if (checkboxes.length === 0) {
+            alert('⚠️ 請至少勾選一個您想參加的活動喔！');
+            e.preventDefault();
+            return false;
+        }
+
+        setTimeout(function() {
+            alert('🎉 報名成功！已收到您的多項活動預約，期待您的蒞臨。');
+            document.getElementById('multiRegistrationForm').reset();
+            document.getElementById('rotarianSection').style.display = 'none';
+            document.getElementById('guestSection').style.display = 'none';
+            document.getElementById('eventsSection').style.display = 'none';
+        }, 500);
+    }
+</script>
+
+</body>
+</html>

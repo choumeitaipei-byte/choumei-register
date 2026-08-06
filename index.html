@@ -24,7 +24,6 @@
             max-width: 550px;
             margin: 0 auto;
         }
-        /* 海報與活動資訊大卡片 */
         .poster-card {
             background: var(--card-bg);
             border-radius: 16px;
@@ -70,7 +69,6 @@
             min-width: 65px;
             display: inline-block;
         }
-        /* 輸入卡片樣式 */
         .form-card {
             background: var(--card-bg);
             padding: 25px;
@@ -105,7 +103,6 @@
             outline: none;
             box-shadow: 0 0 8px rgba(217,179,16,0.15);
         }
-        /* 單選鈕美化 */
         .radio-box-group {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -138,7 +135,6 @@
             background-color: #f4f8fa;
             box-shadow: 0 4px 10px rgba(11,60,93,0.08);
         }
-        /* 動態顯示區塊 */
         .conditional-section {
             display: none;
             animation: fadeIn 0.4s ease forwards;
@@ -175,7 +171,6 @@
     
     <!-- 頂部海報與活動資訊卡片 -->
     <div class="poster-card">
-        <!-- 💡 加上 ?v=0825 強制瀏覽器抓取 8/25 的最新海報 -->
         <img src="poster.jpg?v=0825" alt="活動海報" class="poster-img">
         
         <div class="info-content">
@@ -197,6 +192,9 @@
     <!-- 報名表單 -->
     <form id="registrationForm" action="https://script.google.com/macros/s/AKfycbwjuwUQ-bX3O7eW4sOcgIwZBGvT7ls2wuCivgnFrTZNM4MJQKmUCo-WRosvFqJNm4Eh/exec" method="GET" target="hidden_iframe" onsubmit="showSuccessAlert()">
         
+        <!-- 💡 關鍵修正：自動帶入當次例會名稱給 Google 試算表 -->
+        <input type="hidden" name="events" value="0825_NO.638次例會">
+
         <!-- 核心分流 -->
         <div class="form-card">
             <div class="form-group" style="margin-bottom:0;">

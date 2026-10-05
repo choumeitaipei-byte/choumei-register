@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>洲美扶輪社 例會外賓報名系統</title>
 
     <style>
@@ -16,19 +15,11 @@
         }
 
         body {
-            font-family:
-                -apple-system,
-                BlinkMacSystemFont,
-                "Segoe UI",
-                Roboto,
-                "Helvetica Neue",
-                Arial,
-                sans-serif;
-
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                "Helvetica Neue", Arial, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            line-height: 1.7;
-
+            line-height: 1.6;
             margin: 0;
             padding: 15px;
         }
@@ -38,74 +29,50 @@
             margin: 0 auto;
         }
 
-        /* =========================
-           活動海報
-        ========================= */
-
         .poster-card {
             background: var(--card-bg);
             border-radius: 16px;
-
-            box-shadow:
-                0 10px 30px rgba(0,0,0,0.08);
-
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             margin-bottom: 20px;
             overflow: hidden;
-
-            border-top:
-                6px solid var(--accent-color);
+            border-top: 6px solid var(--accent-color);
         }
 
         .poster-img {
             width: 100%;
             height: auto;
             display: block;
+            object-fit: cover;
         }
 
         .info-content {
             padding: 25px;
-
-            background:
-                linear-gradient(
-                    180deg,
-                    #ffffff 0%,
-                    #f9fbfd 100%
-                );
+            background: linear-gradient(
+                180deg,
+                #ffffff 0%,
+                #f9fbfd 100%
+            );
         }
 
         .info-content h1 {
-            margin:
-                0 0 15px 0;
-
+            margin: 0 0 15px 0;
             font-size: 20px;
-
-            color:
-                var(--primary-color);
-
+            color: var(--primary-color);
             text-align: center;
-
             font-weight: bold;
-
-            line-height: 1.5;
+            line-height: 1.4;
         }
 
         .divider {
             height: 2px;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    transparent,
-                    var(--accent-color),
-                    transparent
-                );
-
+            background: linear-gradient(
+                90deg,
+                transparent,
+                var(--accent-color),
+                transparent
+            );
             margin: 15px 0;
         }
-
-        /* =========================
-           活動資訊
-        ========================= */
 
         .event-details {
             font-size: 15px;
@@ -113,61 +80,38 @@
         }
 
         .event-details p {
-            margin: 9px 0;
-
+            margin: 8px 0;
             display: flex;
             align-items: flex-start;
         }
 
         .event-details strong {
             color: var(--primary-color);
-
             min-width: 65px;
-
             display: inline-block;
         }
 
-        /* =========================
-           內容區塊
-        ========================= */
-
         .content-card {
             background: var(--card-bg);
-
             padding: 25px;
-
             border-radius: 16px;
-
-            box-shadow:
-                0 4px 20px rgba(0,0,0,0.04);
-
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
             margin-bottom: 20px;
         }
 
-        .section-title {
-            font-size: 18px;
-
-            font-weight: bold;
-
+        .content-card h2 {
+            margin: 0 0 15px;
             color: var(--primary-color);
-
-            margin:
-                0 0 15px 0;
-
+            font-size: 18px;
+            border-bottom: 2px solid #e8eef2;
             padding-bottom: 8px;
-
-            border-bottom:
-                2px solid #e8eef2;
         }
 
         .speaker-name {
-            font-size: 22px;
-
-            font-weight: bold;
-
             color: var(--primary-color);
-
-            margin-bottom: 15px;
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 12px;
         }
 
         .bio-list {
@@ -179,20 +123,35 @@
             margin-bottom: 9px;
         }
 
-        /* =========================
-           報名表單
-        ========================= */
+        .outline-item {
+            margin-bottom: 18px;
+        }
+
+        .outline-item strong {
+            display: block;
+            color: var(--primary-color);
+            font-size: 17px;
+            margin-bottom: 4px;
+        }
+
+        .outline-item p {
+            margin: 0;
+            color: #555;
+        }
+
+        .highlight {
+            background: #f5f8fa;
+            border-left: 4px solid var(--accent-color);
+            padding: 12px 14px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 12px;
+        }
 
         .form-card {
             background: var(--card-bg);
-
             padding: 25px;
-
             border-radius: 16px;
-
-            box-shadow:
-                0 4px 20px rgba(0,0,0,0.04);
-
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
             margin-bottom: 20px;
         }
 
@@ -202,69 +161,43 @@
 
         .form-group label {
             display: block;
-
             font-weight: bold;
-
             margin-bottom: 10px;
-
             color: var(--primary-color);
-
             font-size: 16px;
         }
 
         .form-control {
             width: 100%;
-
             padding: 12px 14px;
-
-            border:
-                1px solid #dcdcdc;
-
+            border: 1px solid #dcdcdc;
             border-radius: 8px;
-
             box-sizing: border-box;
-
             font-size: 15px;
-
             background-color: #fcfcfc;
         }
 
         .form-control:focus {
-            border-color:
-                var(--accent-color);
-
+            border-color: var(--accent-color);
             background-color: #fff;
-
             outline: none;
         }
 
         .radio-box-group {
             display: grid;
-
-            grid-template-columns:
-                1fr 1fr;
-
+            grid-template-columns: 1fr 1fr;
             gap: 15px;
-
             margin-top: 5px;
         }
 
         .radio-box-label {
-            border:
-                2px solid #e9e9e9;
-
+            border: 2px solid #e9e9e9;
             padding: 14px;
-
             border-radius: 10px;
-
             text-align: center;
-
             cursor: pointer;
-
             display: block;
-
             font-weight: bold;
-
             background: #fafafa;
         }
 
@@ -275,57 +208,40 @@
         .radio-box-label:has(
             input[type="radio"]:checked
         ) {
-            border-color:
-                var(--primary-color);
-
-            background-color:
-                #f4f8fa;
+            border-color: var(--primary-color);
+            background-color: #f4f8fa;
         }
 
         .conditional-section {
             display: none;
-
-            animation:
-                fadeIn 0.4s ease forwards;
+            animation: fadeIn 0.4s ease forwards;
         }
 
         @keyframes fadeIn {
-
             from {
                 opacity: 0;
-                transform:
-                    translateY(10px);
+                transform: translateY(10px);
             }
 
             to {
                 opacity: 1;
-                transform:
-                    translateY(0);
+                transform: translateY(0);
             }
         }
 
         .btn-submit {
-            background:
-                linear-gradient(
-                    135deg,
-                    var(--primary-color),
-                    #051d2e
-                );
-
+            background: linear-gradient(
+                135deg,
+                var(--primary-color),
+                #051d2e
+            );
             color: white;
-
             border: none;
-
             width: 100%;
-
             padding: 14px;
-
             font-size: 16px;
-
             font-weight: bold;
-
             border-radius: 8px;
-
             cursor: pointer;
         }
 
@@ -333,12 +249,7 @@
             display: none;
         }
 
-        /* =========================
-           手機版
-        ========================= */
-
         @media (max-width: 480px) {
-
             body {
                 padding: 10px;
             }
@@ -348,70 +259,56 @@
             .form-card {
                 padding: 20px;
             }
-
-            .info-content h1 {
-                font-size: 19px;
-            }
-
-            .event-details {
-                font-size: 14px;
-            }
-
-            .content-card {
-                font-size: 14px;
-            }
-
-            .speaker-name {
-                font-size: 20px;
-            }
         }
-
     </style>
 </head>
-
 
 <body>
 
 <div class="container">
 
-
-    <!-- ==================================================
-         活動海報
-    ================================================== -->
-
+    <!-- =========================
+         活動海報與基本資訊
+    ========================== -->
     <div class="poster-card">
 
+        <!-- 海報檔名：1013.jpg
+             若更新海報，可修改 ?v=1013 強制更新快取 -->
         <img
-            src="1006.jpg?v=1006"
-            alt="洲美扶輪社 NO.642次例會活動海報"
+            src="1013.jpg?v=1013"
+            alt="洲美扶輪社 NO.643次例會活動海報"
             class="poster-img"
         >
 
         <div class="info-content">
 
             <h1>
-                洲美扶輪社 NO.642次例會<br>
-                ✨ 幸福不是靠運氣，而是靠溝通 ✨
+                洲美扶輪社 NO.643次例會<br>
+                ✨ 找到幸福的十項原則 ✨
             </h1>
 
             <div class="divider"></div>
-
 
             <div class="event-details">
 
                 <p>
                     <strong>🎤 主講：</strong>
-                    徐海鴻
+                    李紹唐
                 </p>
 
                 <p>
                     <strong>💡 主題：</strong>
-                    幸福不是靠運氣，而是靠溝通
+                    找到幸福的十項原則
                 </p>
 
                 <p>
                     <strong>📅 時間：</strong>
-                    2026年10月06日（二）18:30–20:30
+                    2026年10月13日（二）18:30–20:30
+                </p>
+
+                <p>
+                    <strong>🍽️ 流程：</strong>
+                    18:30–19:00 用餐聯誼
                 </p>
 
                 <p>
@@ -427,89 +324,131 @@
                 </p>
 
             </div>
-
         </div>
-
     </div>
 
 
-
-    <!-- ==================================================
+    <!-- =========================
          講師簡介
-    ================================================== -->
-
+    ========================== -->
     <div class="content-card">
 
-        <h2 class="section-title">
-            🎤 講師簡介
-        </h2>
+        <h2>🎤 講師簡介</h2>
 
         <div class="speaker-name">
-            徐海鴻
+            李紹唐
         </div>
 
         <ul class="bio-list">
 
             <li>
-                <strong>現職</strong>
-                — 人生導航資深顧問
+                <strong>鯉魚資本股份有限公司</strong>
+                創始合夥人
             </li>
 
             <li>
-                新聞攝影專業出身，敏銳的觀察力
+                <strong>四維精密股份有限公司</strong>
+                董事
             </li>
 
             <li>
-                25歲隻身前往美國青年會夏令營工作，
-                被譽為台灣打工旅遊的先驅
+                <strong>全漢企業股份有限公司</strong>
+                獨立董事
             </li>
 
             <li>
-                從五大洲到百國文化用雙腳探索世界，
-                廣結善緣走出一條獨特的人生路
-            </li>
-
-            <li>
-                旗下產業橫跨兩岸三地，
-                涉足投資、服務、製造貿易等領域
-            </li>
-
-            <li>
-                近年更投身科學與心靈整合，
-                幫助無數人找回人生與事業的方向
+                <strong>東捷資訊服務股份有限公司</strong>
+                董事
             </li>
 
         </ul>
 
+        <div class="highlight">
+            著有《勇敢去敲老闆的門》、
+            《勇敢去敲未知的門》、
+            《勇敢去敲客戶的門》等書。
+        </div>
+
     </div>
 
 
+    <!-- =========================
+         演講大綱
+    ========================== -->
+    <div class="content-card">
 
-    <!-- ==================================================
+        <h2>💬 演講大綱</h2>
+
+        <div class="outline-item">
+
+            <strong>
+                ① 做自己，接受不完美
+            </strong>
+
+            <p>
+                遵從內心、接納自己，活出真正的樣子。
+            </p>
+
+        </div>
+
+
+        <div class="outline-item">
+
+            <strong>
+                ② 好好生活，也好好愛人
+            </strong>
+
+            <p>
+                陪伴家人朋友、簡化生活，
+                也別忘了照顧自己的健康。
+            </p>
+
+        </div>
+
+
+        <div class="outline-item">
+
+            <strong>
+                ③ 從經歷中成長，心懷感恩
+            </strong>
+
+            <p>
+                勇敢面對失敗與懊悔，
+                也珍惜現在所擁有的一切。
+            </p>
+
+        </div>
+
+
+        <div class="highlight">
+            這次會從「找到幸福的10項原則」出發，
+            聊聊工作、生活、人際關係，
+            以及我們真正想要的幸福。
+        </div>
+
+    </div>
+
+
+    <!-- =========================
          報名表單
-    ================================================== -->
-
+    ========================== -->
     <form
         id="registrationForm"
-        action="https://script.google.com/macros/s/AKfycbwjuwUQ-bX3O7eW4sOcgIwZBGvT7ls2wuCivgnFrTZNM4MJQKmUCo-WRosvFqJNm4Eh/exec"
+        action="[YOUR_GAS_WEB_APP_URL]"
         method="GET"
         target="hidden_iframe"
         onsubmit="showSuccessAlert()"
     >
 
-        <!-- 自動帶入本次例會名稱 -->
-
+        <!-- 自動帶入當次例會名稱寫入試算表 -->
         <input
             type="hidden"
             name="events"
-            value="1006_NO.642次例會"
+            value="1013_NO.643次例會"
         >
 
 
-        <!-- =========================
-             身分選擇
-        ========================= -->
-
+        <!-- 身分選擇 -->
         <div class="form-card">
 
             <div
@@ -517,7 +456,7 @@
                 style="margin-bottom:0;"
             >
 
-                <label style="text-align:center;">
+                <label style="text-align: center;">
                     請選擇您的身分開始填寫：
                 </label>
 
@@ -562,11 +501,9 @@
         </div>
 
 
-
         <!-- =========================
-             扶輪社友
-        ========================= -->
-
+             扶輪社友資料
+        ========================== -->
         <div
             id="rotarianSection"
             class="form-card conditional-section"
@@ -642,11 +579,9 @@
         </div>
 
 
-
         <!-- =========================
-             一般來賓
-        ========================= -->
-
+             一般來賓資料
+        ========================== -->
         <div
             id="guestSection"
             class="form-card conditional-section"
@@ -705,11 +640,9 @@
         </div>
 
 
-
         <!-- =========================
              共用資料
-        ========================= -->
-
+        ========================== -->
         <div
             id="commonSection"
             class="form-card conditional-section"
@@ -789,16 +722,10 @@
 </div>
 
 
-
-<!-- ==================================================
-     隱藏 iframe
-================================================== -->
-
 <iframe
     name="hidden_iframe"
     id="hidden_iframe"
 ></iframe>
-
 
 
 <script>
@@ -810,12 +737,9 @@
                 'input[name="isRotarian"]:checked'
             );
 
-        if (!selected) {
-            return;
-        }
+        if (!selected) return;
 
-        const isRotarian =
-            selected.value;
+        const isRotarian = selected.value;
 
         const rotarianSection =
             document.getElementById(
@@ -843,10 +767,6 @@
             );
 
 
-        /* =========================
-           扶輪社友
-        ========================= */
-
         if (isRotarian === 'yes') {
 
             rotarianSection.style.display =
@@ -860,32 +780,18 @@
 
 
             rotaryInputs.forEach(
-                function(input) {
-
-                    input.required = true;
-
-                }
+                input => input.required = true
             );
 
 
-            guestInputs.forEach(
-                function(input) {
+            guestInputs.forEach(input => {
 
-                    input.required = false;
+                input.required = false;
+                input.value = '';
 
-                    input.value = '';
+            });
 
-                }
-            );
-
-        }
-
-
-        /* =========================
-           一般來賓
-        ========================= */
-
-        else if (isRotarian === 'no') {
+        } else {
 
             rotarianSection.style.display =
                 'none';
@@ -898,76 +804,59 @@
 
 
             guestInputs.forEach(
-                function(input) {
-
-                    input.required = true;
-
-                }
+                input => input.required = true
             );
 
 
-            rotaryInputs.forEach(
-                function(input) {
+            rotaryInputs.forEach(input => {
 
-                    input.required = false;
+                input.required = false;
+                input.value = '';
 
-                    input.value = '';
-
-                }
-            );
+            });
 
         }
 
     }
 
 
-    /* =========================
-       報名成功
-    ========================= */
-
     function showSuccessAlert() {
 
-        setTimeout(
-            function() {
+        setTimeout(function() {
 
-                alert(
-                    '🎉 報名成功！期待您的蒞臨。'
-                );
-
-
-                document
-                    .getElementById(
-                        'registrationForm'
-                    )
-                    .reset();
+            alert(
+                '🎉 報名成功！期待您的蒞臨。'
+            );
 
 
-                document
-                    .getElementById(
-                        'rotarianSection'
-                    )
-                    .style.display =
-                    'none';
+            document
+                .getElementById(
+                    'registrationForm'
+                )
+                .reset();
 
 
-                document
-                    .getElementById(
-                        'guestSection'
-                    )
-                    .style.display =
-                    'none';
+            document
+                .getElementById(
+                    'rotarianSection'
+                )
+                .style.display = 'none';
 
 
-                document
-                    .getElementById(
-                        'commonSection'
-                    )
-                    .style.display =
-                    'none';
+            document
+                .getElementById(
+                    'guestSection'
+                )
+                .style.display = 'none';
 
-            },
-            500
-        );
+
+            document
+                .getElementById(
+                    'commonSection'
+                )
+                .style.display = 'none';
+
+        }, 500);
 
     }
 
